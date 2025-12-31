@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
+    
+    <title>Grow AI Partners</title>
+    <meta name="description" content="We help leaders turn AI ambition into real impact through strategic clarity, organizational readiness, and proven execution.">
+    
+    <!-- Prevent search engine caching of sensitive information -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Work+Sans:wght@300;400;500&display=swap');
+        
+        :root {
+            /* Refined Color Palette */
+            --white: #FFFFFF;
+            --near-black: #0F1011;
+            --charcoal: #3A3A3A;
+            --burnt-sienna: #D64933;
+            --light-gray: #F5F5F5;
+            --mid-gray: #E5E5E5;
+            --divider: #CCCCCC;
+            
+            /* Professional Typography Scale - Consistent Throughout */
+            --text-xs: 12px;      /* Fine print, meta */
+            --text-sm: 14px;      /* Navigation, labels */
+            --text-base: 17px;    /* Body copy - optimal readability */
+            --text-md: 19px;      /* Large body, taglines */
+            --text-lg: 22px;      /* Subheadings, emphasis */
+            --text-xl: 28px;      /* H4 */
+            --text-2xl: 36px;     /* H3 */
+            --text-3xl: 46px;     /* H2 */
+            --text-4xl: 56px;     /* H1 - Hero only */
+            
+            /* Line Heights - Optically Refined */
+            --leading-none: 1;
+            --leading-tight: 1.25;
+            --leading-snug: 1.4;
+            --leading-normal: 1.6;
+            --leading-relaxed: 1.75;
+            
+            /* Spacing Scale - Based on 8px grid */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            --space-3xl: 96px;
+            
+            --header-height: 80px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 100%; /* Base 16px - let browser handle default */
+        }
+        
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            font-weight: 400;
+            background: var(--white);
+            color: var(--near-black);
+            line-height: var(--leading-relaxed);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: var(--text-base);
+        }
+        
+        /* Brutalist Concrete Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 3;
+        }
+        
+        /* 
+        Z-INDEX STACKING ORDER:
+        0 - Body background (white)
+        1 - Three.js Canvas (octopus & particles)
+        2 - Content sections & containers
+        3 - Concrete texture overlay (subtle, transparent)
+        100 - Fixed header
+        */
+        
+        /* Canvas for Octopus and Particles */
+        #hero-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            display: block;
+        }
+        
+        /* Typography - Mathematically Consistent Throughout */
+        h1, h2, h3, h4 {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: var(--leading-tight);
+            margin-bottom: var(--space-md);
+        }
+        
+        h1 {
+            font-size: var(--text-4xl);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+        
+        h2 {
+            font-size: var(--text-3xl);
+            font-weight: 500;
+        }
+        
+        h3 {
+            font-size: var(--text-2xl);
+            font-weight: 500;
+        }
+        
+        h4 {
+            font-size: var(--text-xl);
+            font-weight: 500;
+        }
+        
+        p {
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+            font-weight: 400;
+            color: var(--charcoal);
+            max-width: 65ch;
+        }
+        
+        .large-text {
+            font-size: var(--text-lg);
+            line-height: var(--leading-normal);
+            font-weight: 400;
+            color: var(--near-black);
+        }
+        
+        strong {
+            font-weight: 500;
+            color: var(--near-black);
+        }
+        
+        .accent {
+            color: var(--burnt-sienna);
+        }
+        
+        /* Header - Absolute Restraint */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: var(--white);
+            border-bottom: 1px solid var(--near-black);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-inner {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .logo-text {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: var(--text-md);
+            letter-spacing: -0.01em;
+            color: var(--near-black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        nav a {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--near-black);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--burnt-sienna);
+            transition: width 0.2s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .menu-toggle span {
+            width: 28px;
+            height: 1px;
+            background: var(--near-black);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Container & Grid System */
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            z-index: 2;
+        }
+        
+        /* Sections - One Idea Per Screen */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 6rem 0;
+        }
+        
+        section.compact {
+            min-height: auto;
+            padding: 8rem 0;
+        }
+        
+        /* Hero Section */
+        #hero {
+            position: relative;
+            justify-content: center;
+            text-align: left;
+            padding-top: calc(var(--header-height) + 6rem);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 2rem;
+        }
+        
+        .hero-tagline {
+            font-size: var(--text-md);
+            line-height: var(--leading-normal);
+            margin-bottom: var(--space-xl);
+            font-weight: 400;
+            color: var(--charcoal);
+        }
+        
+        /* CTA Button - Brutalist */
+        .cta-button {
+            display: inline-block;
+            padding: var(--space-sm) var(--space-xl);
+            background: var(--burnt-sienna);
+            color: var(--white);
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 500;
+            font-size: var(--text-sm);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            background: var(--near-black);
+            transform: translateY(-2px);
+        }
+        
+        .cta-button:active {
+            transform: translateY(0);
+        }
+        
+        /* Problem Section */
+        #problem {
+            background: var(--light-gray);
+        }
+        
+        .section-content {
+            max-width: 800px;
+        }
+        
+        .section-content h2 {
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* Pillars Section - Grid Layout */
+        #pillars {
+            background: var(--white);
+        }
+        
+        .pillars-header {
+            margin-bottom: 4rem;
+            max-width: 700px;
+        }
+        
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem 3rem;
+            margin-top: 4rem;
+        }
+        
+        .pillar {
+            border-top: 2px solid var(--near-black);
+            padding-top: var(--space-sm);
+        }
+        
+        .pillar h4 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .pillar p {
+            line-height: var(--leading-normal);
+        }
+        
+        /* Who We Are Section */
+        #who-we-are {
+            background: var(--light-gray);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+        
+        .value h4 {
+            color: var(--burnt-sienna);
+            margin-bottom: 1rem;
+        }
+        
+        /* Services Section */
+        #services {
+            background: var(--white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .service {
+            border: 1px solid var(--divider);
+            padding: 2.5rem;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .service:hover {
+            border-color: var(--burnt-sienna);
+            transform: translateY(-4px);
+        }
+        
+        .service h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .service-description {
+            font-size: var(--text-base);
+            color: var(--charcoal);
+            margin-bottom: var(--space-md);
+        }
+        
+        .service-badge {
+            display: inline-block;
+            background: var(--burnt-sienna);
+            color: var(--white);
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .service.expanded .service-details {
+            max-height: 800px;
+        }
+        
+        .service-details ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-details li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: var(--text-base);
+            line-height: 1.6;
+        }
+        
+        .service-details li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--burnt-sienna);
+        }
+        
+        .expand-button {
+            background: transparent;
+            border: 1px solid var(--near-black);
+            color: var(--near-black);
+            padding: var(--space-xs) var(--space-md);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            margin-top: var(--space-sm);
+            transition: all 0.2s ease;
+        }
+        
+        .expand-button:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: var(--light-gray);
+            min-height: 80vh;
+        }
+        
+        .contact-content {
+            max-width: 700px;
+        }
+        
+        .contact-content h2 {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-content p {
+            font-size: var(--text-md);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .contact-info {
+            margin-top: var(--space-xl);
+        }
+        
+        .contact-info a {
+            color: var(--burnt-sienna);
+            text-decoration: none;
+            font-size: var(--text-lg);
+            border-bottom: 1px solid var(--burnt-sienna);
+            transition: color 0.2s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--near-black);
+        }
+        
+        .domain {
+            margin-top: var(--space-lg);
+            font-size: var(--text-base);
+            color: var(--charcoal);
+        }
+        
+        /* Footer */
+        footer {
+            padding: var(--space-xl) 0;
+            text-align: center;
+            border-top: 1px solid var(--divider);
+            background: var(--white);
+        }
+        
+        footer p {
+            font-size: var(--text-xs);
+            color: var(--charcoal);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+            }
+            
+            .header-inner {
+                padding: 0 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                z-index: 101;
+            }
+            
+            nav {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 100%;
+                max-width: 320px;
+                height: calc(100vh - var(--header-height));
+                background: var(--white);
+                border-left: 1px solid var(--divider);
+                transition: right 0.3s ease;
+                padding: 3rem 2rem;
+                overflow-y: auto;
+                z-index: 99;
+            }
+            
+            nav.active {
+                right: 0;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+            
+            nav a {
+                font-size: var(--text-sm);
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+            }
+            
+            section {
+                padding: var(--space-2xl) 0;
+                min-height: auto;
+            }
+            
+            #hero {
+                padding-top: calc(var(--header-height) + var(--space-xl));
+                min-height: 75vh;
+            }
+            
+            .hero-content h1 {
+                font-size: var(--text-2xl);
+            }
+            
+            .hero-tagline {
+                font-size: var(--text-base);
+                margin-bottom: var(--space-xl);
+            }
+            
+            .cta-button {
+                width: 100%;
+                text-align: center;
+                padding: var(--space-sm) var(--space-lg);
+                font-size: var(--text-sm);
+                min-height: 48px;
+            }
+            
+            .pillars-grid,
+            .values-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            
+            .service {
+                padding: var(--space-lg) var(--space-md);
+            }
+            
+            .pillar {
+                padding-top: var(--space-sm);
+            }
+            
+            /* Touch-friendly expand buttons */
+            .expand-button {
+                width: 100%;
+                padding: var(--space-sm) var(--space-md);
+                min-height: 48px;
+            }
+            
+            /* Reduce particle count on mobile for performance */
+            #hero-canvas {
+                opacity: 0.7;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-inner {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .logo-text {
+                font-size: var(--text-base);
+            }
+            
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            section {
+                padding: var(--space-xl) 0;
+            }
+            
+            #hero {
+                padding-top: calc(var(--header-height) + var(--space-lg));
+                min-height: 70vh;
+            }
+            
+            .hero-content h1 {
+                font-size: var(--text-xl);
+                margin-bottom: var(--space-md);
+            }
+            
+            .hero-tagline {
+                font-size: var(--text-sm);
+                margin-bottom: var(--space-lg);
+            }
+            
+            .cta-button {
+                width: 100%;
+                padding: var(--space-sm) var(--space-md);
+                font-size: var(--text-sm);
+                min-height: 48px;
+            }
+            
+            .service,
+            .pillar {
+                padding: var(--space-md);
+            }
+            
+            .values-grid,
+            .pillars-grid,
+            .services-grid {
+                gap: var(--space-md);
+            }
+            
+            /* Make touch targets larger for mobile accessibility */
+            nav a {
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+            }
+            
+            .expand-button {
+                width: 100%;
+                min-height: 48px;
+            }
+            
+            .contact-info a {
+                font-size: var(--text-md);
+            }
+        }
+        
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            #hero-canvas {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="#hero" class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Minimalist 2D octopus silhouette -->
+                    <ellipse cx="16" cy="14" rx="6" ry="5" fill="var(--near-black)"/>
+                    <path d="M10 18 Q8 22, 7 26 M12 18 Q11 23, 10 28 M14 18 Q14 24, 13 30 M16 18 L16 30 M18 18 Q18 24, 19 30 M20 18 Q21 23, 22 28 M22 18 Q24 22, 25 26" 
+                          stroke="var(--near-black)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    <circle cx="14" cy="13" r="1" fill="var(--white)"/>
+                    <circle cx="18" cy="13" r="1" fill="var(--white)"/>
+                </svg>
+                <span class="logo-text">GROW AI</span>
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#problem">Challenge</a></li>
+                    <li><a href="#pillars">Approach</a></li>
+                    <li><a href="#who-we-are">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Canvas - Octopus and Particles -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Make the AI Moment<br>Work for <span class="accent">You</span></h1>
+                <p class="hero-tagline">We help leaders turn AI ambition into real impact through strategic clarity, organizational readiness, and proven execution.</p>
+                <a href="#contact" class="cta-button">Let's Connect</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <div class="section-content">
+                <h2>How ready is your<br>organization to maximize<br>the AI moment?</h2>
+                <p class="large-text">Most organizations are investing in AI — but few are unlocking its full value. <strong class="accent">The barrier is rarely the technology.</strong></p>
+                <p>It's the strategic clarity, organizational readiness, data foundations, and culture required to adopt AI responsibly and at scale.</p>
+                <p style="margin-top: 2rem;">Our firm helps leaders get these conditions right so AI investments drive real outcomes — not stalled pilots, fragmented experiments, or unrealized potential.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section id="pillars" class="compact">
+        <div class="container">
+            <div class="pillars-header">
+                <h2>The Four Foundations<br>of AI Success</h2>
+                <p style="margin-top: 1.5rem;">When these pillars come together, organizations unlock AI's full potential — and we help them get there.</p>
+            </div>
+            
+            <div class="pillars-grid">
+                <div class="pillar">
+                    <h4>Strategy</h4>
+                    <p>AI strategy tied to business value, clear roadmaps, and measurable outcomes</p>
+                </div>
+                <div class="pillar">
+                    <h4>Organization</h4>
+                    <p>Ready to adopt and govern AI with the right roles, processes, and accountability</p>
+                </div>
+                <div class="pillar">
+                    <h4>Data & Technology</h4>
+                    <p>Strong data foundations and technical infrastructure to support AI at scale</p>
+                </div>
+                <div class="pillar">
+                    <h4>Culture</h4>
+                    <p>A culture that learns, experiments, and embraces change</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section id="who-we-are">
+        <div class="container">
+            <div class="section-content">
+                <h2>Who We Are</h2>
+                <p style="font-size: var(--text-md); margin-top: var(--space-lg); color: var(--near-black);">We work with leaders who know AI is important but aren't always sure how to make it work inside their organization.</p>
+                <p style="margin-top: 1.5rem;">Our strength is helping teams cut through the noise — making AI understandable, actionable, and aligned to how people actually work.</p>
+                
+                <div class="values-grid">
+                    <div class="value">
+                        <h4>Delivering Real Business Impact</h4>
+                        <p>We focus on the decisions and conditions that truly drive value. Our approach is grounded in practical business realities — helping leaders prioritize the right opportunities and take meaningful steps that turn AI strategy into measurable results.</p>
+                    </div>
+                    <div class="value">
+                        <h4>Translating Complexity Into Clarity</h4>
+                        <p>We make AI accessible, understandable, and actionable for everyone. You don't need a technical background to work with us. We translate AI into clear concepts, build confidence across teams, and support leaders as they guide their organizations through change.</p>
+                    </div>
+                    <div class="value">
+                        <h4>Maximizing Your AI Investment</h4>
+                        <p>We ensure your AI efforts lead to tangible outcomes, not stalled experimentation. By strengthening the foundational pillars of AI readiness, we help organizations convert AI spending into sustainable impact and long-term value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="compact">
+        <div class="container">
+            <div class="section-content">
+                <h2>Our Services</h2>
+                <p style="margin-top: 1.5rem;">End-to-end support from assessing readiness to scaling proven solutions.</p>
+                
+                <div class="services-grid">
+                    <div class="service">
+                        <h4>Strategy & Value<br>Definition</h4>
+                        <p class="service-description">Defining where AI creates the most impact — and how to get there.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Identify and prioritize high-value AI use cases tied to business goals</li>
+                                <li>Develop practical AI roadmaps with clear sequencing and ownership</li>
+                                <li>Establish measurable success metrics (KPIs, OKRs, value targets)</li>
+                                <li>Align executives and stakeholders around a unified AI direction</li>
+                            </ul>
+                        </div>
+                        <button class="expand-button" onclick="toggleService(this)">Learn More</button>
+                    </div>
+                    
+                    <div class="service">
+                        <h4>Readiness &<br>Enablement</h4>
+                        <div class="service-badge">Grow AI Index™</div>
+                        <p class="service-description">Assessing your current state and building the foundations for success.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Evaluate readiness using our proprietary Grow AI Index</li>
+                                <li>Identify gaps across strategy, organization, data/tech, and culture</li>
+                                <li>Recommend governance, roles, and operating models</li>
+                                <li>Support leadership, workforce, and change enablement</li>
+                            </ul>
+                        </div>
+                        <button class="expand-button" onclick="toggleService(this)">Learn More</button>
+                    </div>
+                    
+                    <div class="service">
+                        <h4>Pilot Execution<br>& Scaling</h4>
+                        <p class="service-description">Helping you test, refine, and scale AI in real workflows.</p>
+                        <div class="service-details">
+                            <ul>
+                                <li>Design and execute pilot projects with clear value hypotheses</li>
+                                <li>Integrate AI into workflows and measure results</li>
+                                <li>Coordinate across business, IT, and operations</li>
+                                <li>Build playbooks to scale successful solutions</li>
+                            </ul>
+                        </div>
+                        <button class="expand-button" onclick="toggleService(this)">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Are you ready to turn<br>AI ambition into<br><span class="accent">real impact?</span></h2>
+                <p>Let's connect.</p>
+                <a href="mailto:contact@growai-partners.com" class="cta-button">Get in Touch</a>
+                <div class="contact-info">
+                    <p class="domain">www.growai-partners.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Grow AI Partners. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Three.js with Subresource Integrity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" 
+            integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+    
+    <script>
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+            });
+        });
+        
+        // ============================================================
+        // SERVICE CARD EXPANSION
+        // ============================================================
+        function toggleService(button) {
+            const service = button.closest('.service');
+            service.classList.toggle('expanded');
+            button.textContent = service.classList.contains('expanded') ? 'Show Less' : 'Learn More';
+        }
+        
+        // ============================================================
+        // SMOOTH SCROLL
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // ============================================================
+        // THREE.JS OCTOPUS & PARTICLE SYSTEM
+        // ============================================================
+        
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            console.log('Reduced motion preferred - skipping 3D');
+        } else {
+            initThreeJS();
+        }
+        
+        function initThreeJS() {
+            console.log('Initializing Three.js octopus...');
+            const canvas = document.getElementById('hero-canvas');
+            
+            if (!canvas) {
+                console.error('Canvas element not found!');
+                return;
+            }
+            
+            // Verify Three.js loaded
+            if (typeof THREE === 'undefined') {
+                console.error('Three.js not loaded!');
+                return;
+            }
+            
+            console.log('Three.js version:', THREE.REVISION);
+            
+            const scene = new THREE.Scene();
+            
+            // Camera - positioned to see the octopus clearly
+            const camera = new THREE.PerspectiveCamera(
+                50,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            camera.position.set(0, 0, 25);
+            camera.lookAt(0, 0, 0);
+            
+            // Renderer
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0xffffff, 0); // Transparent background
+            
+            console.log('Renderer initialized:', renderer.domElement.width, 'x', renderer.domElement.height);
+            
+            // Mouse tracking
+            const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+            
+            // Mouse move event
+            window.addEventListener('mousemove', (e) => {
+                mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Touch events for mobile
+            window.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    mouse.targetX = (touch.clientX / window.innerWidth) * 2 - 1;
+                    mouse.targetY = -(touch.clientY / window.innerHeight) * 2 + 1;
+                }
+            }, { passive: true });
+            
+            window.addEventListener('touchend', () => {
+                // Gradually return to center when touch ends
+                mouse.targetX = 0;
+                mouse.targetY = 0;
+            });
+            
+            // Smooth mouse following
+            function updateMouse() {
+                mouse.x += (mouse.targetX - mouse.x) * 0.05;
+                mouse.y += (mouse.targetY - mouse.y) * 0.05;
+            }
+            
+            // ============================================================
+            // OCTOPUS CREATION
+            // ============================================================
+            
+            const octopusGroup = new THREE.Group();
+            scene.add(octopusGroup);
+            
+            // Head (central sphere) - SOLID and VISIBLE
+            const headGeometry = new THREE.SphereGeometry(2.5, 32, 32);
+            
+            // Wireframe head
+            const headWireframeMaterial = new THREE.MeshBasicMaterial({
+                color: 0x3A3A3A,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const headWireframe = new THREE.Mesh(headGeometry, headWireframeMaterial);
+            octopusGroup.add(headWireframe);
+            
+            // Solid core for visibility
+            const coreGeometry = new THREE.SphereGeometry(2.2, 16, 16);
+            const coreMaterial = new THREE.MeshBasicMaterial({
+                color: 0xD64933,
+                transparent: true,
+                opacity: 0.15
+            });
+            const core = new THREE.Mesh(coreGeometry, coreMaterial);
+            octopusGroup.add(core);
+            
+            console.log('Octopus head created');
+            
+            // Tentacle configuration
+            const tentacleCount = 8;
+            const tentacles = [];
+            
+            class Tentacle {
+                constructor(angle, index) {
+                    this.angle = angle;
+                    this.index = index;
+                    this.segments = [];
+                    this.segmentCount = 15;
+                    this.baseRadius = 2.5;
+                    this.length = 12;
+                    this.phase = (index / tentacleCount) * Math.PI * 2;
+                    this.lines = [];
+                    
+                    this.createTentacle();
+                }
+                
+                createTentacle() {
+                    // Create curve points for tentacle
+                    const points = [];
+                    
+                    for (let i = 0; i <= this.segmentCount; i++) {
+                        const t = i / this.segmentCount;
+                        
+                        // Base position on circle
+                        const baseX = Math.cos(this.angle) * this.baseRadius;
+                        const baseY = Math.sin(this.angle) * this.baseRadius;
+                        
+                        // Extend outward and down with curve
+                        const x = baseX + Math.cos(this.angle) * t * this.length * 0.6;
+                        const y = baseY + Math.sin(this.angle) * t * this.length * 0.6 - t * this.length * 0.8;
+                        const z = Math.sin(t * Math.PI) * 1.5;
+                        
+                        points.push(new THREE.Vector3(x, y, z));
+                        this.segments.push({ x, y, z, baseX: x, baseY: y, baseZ: z });
+                    }
+                    
+                    // Main tentacle line (dark)
+                    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                    const material = new THREE.LineBasicMaterial({
+                        color: 0x0F1011,
+                        transparent: true,
+                        opacity: 0.9,
+                        linewidth: 2
+                    });
+                    
+                    const line = new THREE.Line(geometry, material);
+                    this.lines.push(line);
+                    octopusGroup.add(line);
+                    
+                    // Accent line (burnt sienna)
+                    const accentMaterial = new THREE.LineBasicMaterial({
+                        color: 0xD64933,
+                        transparent: true,
+                        opacity: 0.5,
+                        linewidth: 1
+                    });
+                    const accentLine = new THREE.Line(geometry.clone(), accentMaterial);
+                    this.lines.push(accentLine);
+                    octopusGroup.add(accentLine);
+                }
+                
+                update(time, mouseInfluence) {
+                    const points = [];
+                    
+                    for (let i = 0; i <= this.segmentCount; i++) {
+                        const t = i / this.segmentCount;
+                        const segment = this.segments[i];
+                        
+                        // Gentle wave motion
+                        const wave = Math.sin(time * 1.2 + this.phase + t * Math.PI * 2) * 0.8 * t;
+                        const wave2 = Math.cos(time * 0.8 + this.phase * 1.5 + t * Math.PI) * 0.5 * t;
+                        
+                        // Mouse influence
+                        const influenceStrength = mouseInfluence * Math.pow(t, 1.5);
+                        const mouseOffsetX = mouse.x * 5 * influenceStrength;
+                        const mouseOffsetY = mouse.y * 5 * influenceStrength;
+                        
+                        // Combine movements
+                        const x = segment.baseX + wave * Math.cos(this.angle + Math.PI/2) + mouseOffsetX;
+                        const y = segment.baseY + wave * Math.sin(this.angle + Math.PI/2) + mouseOffsetY;
+                        const z = segment.baseZ + wave2;
+                        
+                        points.push(new THREE.Vector3(x, y, z));
+                    }
+                    
+                    // Update both lines
+                    this.lines.forEach(line => {
+                        line.geometry.setFromPoints(points);
+                    });
+                }
+            }
+            
+            // Create tentacles
+            for (let i = 0; i < tentacleCount; i++) {
+                const angle = (i / tentacleCount) * Math.PI * 2;
+                tentacles.push(new Tentacle(angle, i));
+            }
+            
+            console.log('Octopus created with', tentacleCount, 'tentacles');
+            
+            // Position octopus - CENTER OF SCREEN
+            octopusGroup.position.set(3, 0, 0);
+            
+            // Add a test sphere to verify rendering works
+            const testSphere = new THREE.Mesh(
+                new THREE.SphereGeometry(0.5, 16, 16),
+                new THREE.MeshBasicMaterial({ color: 0xFF0000 })
+            );
+            testSphere.position.set(-8, 3, 0);
+            scene.add(testSphere);
+            console.log('Test sphere added at (-8, 3, 0) - should be visible as red dot');
+            
+            // ============================================================
+            // PARTICLE FIELD SYSTEM
+            // ============================================================
+            
+            // Adaptive particle count based on viewport and device
+            let particleCount = 50;
+            if (window.innerWidth < 480) {
+                particleCount = 20; // Minimal particles for small phones
+            } else if (window.innerWidth < 768) {
+                particleCount = 30; // Reduced for tablets
+            } else if (window.innerWidth < 1024) {
+                particleCount = 40; // Medium for laptops
+            }
+            
+            console.log('Particle count for this device:', particleCount);
+            
+            const particles = [];
+            const particleGeometry = new THREE.BufferGeometry();
+            const particlePositions = new Float32Array(particleCount * 3);
+            
+            class Particle {
+                constructor(index) {
+                    this.index = index;
+                    
+                    // Spread particles across viewport
+                    this.baseX = (Math.random() - 0.5) * 30;
+                    this.baseY = (Math.random() - 0.5) * 20;
+                    this.baseZ = (Math.random() - 0.5) * 10;
+                    
+                    this.x = this.baseX;
+                    this.y = this.baseY;
+                    this.z = this.baseZ;
+                    
+                    this.phase = Math.random() * Math.PI * 2;
+                    this.speed = 0.3 + Math.random() * 0.4;
+                }
+                
+                update(time) {
+                    // Slow sinusoidal drift
+                    const drift = Math.sin(time * this.speed + this.phase) * 0.8;
+                    const drift2 = Math.cos(time * this.speed * 0.7 + this.phase) * 0.6;
+                    
+                    // Mouse influence (very subtle)
+                    const mouseDistX = mouse.x * 12 - this.baseX;
+                    const mouseDistY = mouse.y * 10 - this.baseY;
+                    const mouseDist = Math.sqrt(mouseDistX * mouseDistX + mouseDistY * mouseDistY);
+                    const mouseInfluence = Math.max(0, 1 - mouseDist / 18) * 1.5;
+                    
+                    this.x = this.baseX + drift + mouseInfluence * 0.5;
+                    this.y = this.baseY + drift2 + mouseInfluence * 0.5;
+                    this.z = this.baseZ + drift * 0.4;
+                    
+                    // Update buffer
+                    particlePositions[this.index * 3] = this.x;
+                    particlePositions[this.index * 3 + 1] = this.y;
+                    particlePositions[this.index * 3 + 2] = this.z;
+                }
+            }
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(i));
+                // Initialize positions
+                particles[i].update(0);
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            
+            const particleMaterial = new THREE.PointsMaterial({
+                color: 0x0F1011,
+                size: 0.3,
+                transparent: true,
+                opacity: 0.85,
+                sizeAttenuation: true
+            });
+            
+            const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particleSystem);
+            console.log('Particle system created with', particleCount, 'particles');
+            
+            // Connection lines between particles
+            const lineGeometry = new THREE.BufferGeometry();
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x3A3A3A,
+                transparent: true,
+                opacity: 0.2,
+                linewidth: 1
+            });
+            const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lines);
+            
+            function updateParticleConnections() {
+                const positions = [];
+                const maxDistance = 8;
+                
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p1 = particles[i];
+                        const p2 = particles[j];
+                        
+                        const dx = p1.x - p2.x;
+                        const dy = p1.y - p2.y;
+                        const dz = p1.z - p2.z;
+                        const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                        
+                        if (distance < maxDistance) {
+                            positions.push(p1.x, p1.y, p1.z);
+                            positions.push(p2.x, p2.y, p2.z);
+                        }
+                    }
+                }
+                
+                lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            }
+            
+            // ============================================================
+            // ANIMATION LOOP
+            // ============================================================
+            
+            let time = 0;
+            let frameCount = 0;
+            
+            console.log('Starting animation loop...');
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                time += 0.01;
+                frameCount++;
+                
+                // Log first few frames to verify animation
+                if (frameCount === 1) {
+                    console.log('First frame rendered!');
+                }
+                if (frameCount === 60) {
+                    console.log('60 frames rendered successfully - animation running smoothly');
+                }
+                
+                updateMouse();
+                
+                // Calculate mouse influence (0 to 1)
+                const mouseInfluence = Math.min(1, Math.sqrt(mouse.x * mouse.x + mouse.y * mouse.y) * 0.6);
+                
+                // Update octopus tentacles
+                tentacles.forEach(tentacle => {
+                    tentacle.update(time, mouseInfluence);
+                });
+                
+                // Gentle rotation of octopus
+                octopusGroup.rotation.y = Math.sin(time * 0.3) * 0.15;
+                octopusGroup.rotation.x = 0.2 + Math.cos(time * 0.25) * 0.1;
+                
+                // Rotate test sphere to verify rendering
+                testSphere.rotation.y = time;
+                
+                // Update particles
+                particles.forEach(particle => {
+                    particle.update(time);
+                });
+                particleGeometry.attributes.position.needsUpdate = true;
+                
+                // Update particle connections (every other frame for performance)
+                if (frameCount % 2 === 0) {
+                    updateParticleConnections();
+                }
+                
+                // RENDER
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // ============================================================
+            // RESPONSIVE RESIZE
+            // ============================================================
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Hide canvas when scrolled past hero
+            window.addEventListener('scroll', () => {
+                const heroHeight = document.getElementById('hero').offsetHeight;
+                const scrollY = window.scrollY;
+                const opacity = Math.max(0, 1 - (scrollY / heroHeight) * 1.5);
+                canvas.style.opacity = opacity;
+            });
+        }
+    </script>
+</body>
+</html>
